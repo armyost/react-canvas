@@ -14,9 +14,9 @@ class Square {
       this.ctx.fill();
     }
     
-    random(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
+    // random(min, max) {
+    //   return Math.floor(Math.random() * (max - min)) + min;
+    // }
   }
   
   export default Square;

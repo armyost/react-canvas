@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import React from "react";
@@ -14,6 +14,11 @@ class App extends React.Component {
     this.height = null;
 
     this.squares = [];
+    this.squareSize = 20;
+    console.log("Square size :[1]", this.squareSize);
+
+    this.dataCount = 40;
+    console.log("Data Count :[1]", this.dataCount);
   }
 
   loop = () => {
@@ -21,16 +26,9 @@ class App extends React.Component {
     this.ctx.fillRect(0, 0, this.width, this.height); //apply filling color
 
 
-    while (this.squares.length < 25) {
-      // const size = this.random(10, 20);
-      // const x = this.random(0 + size, this.width - size);
-      // const y = this.random(0 + size, this.height - size);
-      // const red = this.random(0, 255);
-      // const green = this.random(0, 255);
-      // const blue = this.random(0, 255);    
-      const size = this.random(10, 20);
-      const x = this.random(0 + size, this.width - size);
-      const y = this.random(0 + size, this.height - size);
+    for (let i = 0; i < this.dataCount; i++) {
+      const x = this.random(0 + this.squareSize, this.width - this.squareSize);
+      const y = this.random(0 + this.squareSize, this.height - this.squareSize);
       const red = this.random(0, 255);
       const green = this.random(0, 255);
       const blue = this.random(0, 255);     
@@ -38,14 +36,13 @@ class App extends React.Component {
       const square = new Square(
         this.ctx, x, y, 
         "rgb(" + red + "," + green + "," + blue + ")",
-        size
+        this.squareSize
       );
       this.squares.push(square);
     }
 
-    for (let i = 0; i < this.squares.length; i++) {
+    for (let i = 0; i < this.dataCount; i++) {
       this.squares[i].draw();
-      // this.balls[i].update(this.width, this.height);
     }
 
     requestAnimationFrame(this.loop);
@@ -68,7 +65,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Refresh</h1>
+        <h1>Canvas 정보  squareSize : {this.squareSize} dataCount : {this.dataCount}</h1>
         <canvas ref="canvas" width={640} height={425} />
       </div>
     );
